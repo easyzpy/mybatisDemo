@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.imefuture.mapper.EmployeeDao">
+
+		<resultMap type="com.imefuture.entity.Employee" id="MySimpleEmp">
+            <id column="id" property="id"/>
+            <result column="last_name" property="lastName"/>
+            <result column="email" property="email"/>
+            <result column="gender" property="gender"/>
+        </resultMap>
+    <select id="getEmpById" resultType="com.imefuture.entity.Employee">
+        select * from employee
+        where empId=#{empId}
+    </select>
+
+
+    <!--  使用association  定义单个对象的封装规则 -->
+    <resultMap type="com.imefuture.entity.Employee" id="MyDifEmp2">
+        <id column="empId" property="empId" />
+        <result column="createTime" property="createTime"/>
+        <result column="updateTime" property="updateTime"/>
+        <result column="lastName" property="lastName" />
+        <result column="email" property="email" />
+        <result column="gender" property="gender" />
+        <result column="empType" property="empType" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
+        <result column="employeeType" property="employeeType" typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>
+        <result column="age" property="age" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
+        <association property="dept" javaType="com.imefuture.entity.Department">
+            <id column="deptId" property="deptId"/>
+            <result column="createTime" property="createTime"/>
+            <result column="updateTime" property="updateTime"/>
+            <result column="departmentName" property="departmentName"/>
+        </association>
+    </resultMap>
+
+
+    <select id="getEmpAndDept" resultMap="MyDifEmp2">
+        SELECT *
+        from employee e,department d
+        where e.deptId=d.deptId
+        and e.empId=#{empId}
+    </select>
+    <!--查询list-->
+    <select id="getEmpList" resultMap="MyDifEmp2">
+        SELECT *
+        from employee e,department d
+        where e.deptId=d.deptId
+    </select>
+    <!--insert-->
+    <sql id="empColumns">
+        (createTime, updateTime, empId, lastName, email, gender, deptId, empType, employeeType, age)
+    </sql>
+    <sql id="empValues">
+        (NOw(), NOW(), null, #{lastName}, #{email}, #{gender}, #{dept.deptId}
+        , #{empType, typeHandler=org.apache.ibatis.type.EnumTypeHandler}, #{employeeType, typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler}
+        , #{age}
+        )
+    </sql>
+
+    <insert id="insertEmployee" useGeneratedKeys="true" keyProperty="empId">
+      INSERT INTO employee <include refid="empColumns"/>
+      VALUES <include refid="empValues"/>
+    </insert>
+    <!--插入一堆-->
+    <insert id="insertEmployees" useGeneratedKeys="true" keyProperty="empId" parameterType="java.util.List">
+        INSERT INTO employee (lastName, email, gender, deptId)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.lastName}, #{item.email}, #{item.gender}, #{item.dept.deptId})
+        </foreach>
+        ;
+    </insert>
+
+    <!--删除-->
+    <delete id="delEmp" parameterType="java.lang.String">
+        DELETE
+        FROM employee
+        WHERE email LIKE CONCAT('%',#{name},'%')
+    </delete>
+</mapper>
