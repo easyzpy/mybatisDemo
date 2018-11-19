@@ -45,8 +45,9 @@
     <!--查询list-->
     <select id="getEmpList" resultMap="MyDifEmp2">
         SELECT *
-        from employee e,department d
-        where e.deptId=d.deptId
+        FROM employee e,department d
+        WHERE e.deptId=d.deptId
+        LIMIT #{start}, #{end}
     </select>
     <!--insert-->
     <sql id="empColumns">

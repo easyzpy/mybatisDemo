@@ -1,3 +1,10 @@
+$.fn.bootstrapTable.defaults = {
+    detailFormatter: function (index, row, element) {
+        console.log(index)
+        console.log(row)
+        console.log(element)
+    }
+}
 $('#table').bootstrapTable({
     url: basePath + "/emp/list",
     columns: [{
@@ -14,10 +21,13 @@ $('#table').bootstrapTable({
         title: 'gender'
     }, {
         field: 'empType',
-        title: 'empType'
+        title: 'empType',
+        formatter: emptypeFormat(value, row, index)
     }, {
         field: 'employeeType',
-        title: 'employeeType'
+        title: 'employeeType',
+        formatter: emptypeFormat(value, row, index)
+
     }, {
         field: 'createTime',
         title: 'createTime'
@@ -25,4 +35,14 @@ $('#table').bootstrapTable({
         field: 'updateTime',
         title: 'updateTime'
     }]
+
 });
+function emptypeFormat(value, row, index) {
+        switch (value){
+        case "VIP":
+            return "会员"
+        case "Tourist":
+            return "游客"
+        default:return null;
+    }
+}

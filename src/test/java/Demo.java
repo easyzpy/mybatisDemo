@@ -94,10 +94,13 @@ public class Demo {
             employee.setEmail("zhangpingyang"+ (i + 1) +"@sina.com");
             employee.setGender("男");
             employee.setLastName("zhangpingyang" + (i + 1));
+            employee.setAge(Age.Young);
+            employee.setEmployeeType(EmpType.VIP);
+            employee.setEmpType(EmpType.Tourist);
             list.add(employee);
         }
         Integer count = employeeDao.insertEmployees(list);
-        syso(list);
+//        syso(list);
     }
     @Test
     @Transactional

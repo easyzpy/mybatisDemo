@@ -23,7 +23,7 @@ public class EmpController {
     @RequestMapping("list")
     @ResponseBody
     public List<Employee> list(){
-        List<Employee> empList = empDao.getEmpList();
+        List<Employee> empList = empDao.getEmpList(1, 10);
 //        List<Employee> list = new ArrayList<>();
 //        list.add(empAndDept);
         return empList;

@@ -1,6 +1,7 @@
 package com.imefuture.mapper;
 
 import com.imefuture.entity.Employee;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface EmployeeDao {
 
     Integer insertEmployees(List<Employee> employees);
 
-    List<Employee> getEmpList();
+    List<Employee> getEmpList(@Param("start") Integer start, @Param("end") Integer end);
 
     Integer delEmp(String text);
 }
