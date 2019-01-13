@@ -20,15 +20,6 @@ $('#table').bootstrapTable({
         field: 'gender',
         title: 'gender'
     }, {
-        field: 'empType',
-        title: 'empType',
-        formatter: emptypeFormat(value, row, index)
-    }, {
-        field: 'employeeType',
-        title: 'employeeType',
-        formatter: emptypeFormat(value, row, index)
-
-    }, {
         field: 'createTime',
         title: 'createTime'
     }, {
@@ -37,12 +28,3 @@ $('#table').bootstrapTable({
     }]
 
 });
-function emptypeFormat(value, row, index) {
-        switch (value){
-        case "VIP":
-            return "会员"
-        case "Tourist":
-            return "游客"
-        default:return null;
-    }
-}

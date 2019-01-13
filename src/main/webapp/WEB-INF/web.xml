@@ -5,7 +5,14 @@
          version="3.1">
 
   <display-name>ChatRobot</display-name>
-  <description>ChatRobot_Alpha_0.0.1</description>
+    <filter>
+        <filter-name>CrossDomainFilter</filter-name>
+        <filter-class>com.imefuture.filter.CrossDomainFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CrossDomainFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
   <!-- 编码过滤器 -->
  <!-- <filter>

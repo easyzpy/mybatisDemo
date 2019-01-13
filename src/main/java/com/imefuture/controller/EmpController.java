@@ -1,7 +1,9 @@
 package com.imefuture.controller;
 
 import com.imefuture.entity.Employee;
+import com.imefuture.entity.Person;
 import com.imefuture.mapper.EmployeeDao;
+import com.imefuture.mapper.PersonDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,14 @@ public class EmpController {
 
     @Autowired
     private EmployeeDao empDao;
+    @Autowired
+    private PersonDao personDao;
+    @RequestMapping("person")
+    @ResponseBody
+    public Person personList(){
+
+        return personDao.selectPerson(1L);
+    }
 
     @RequestMapping("list")
     @ResponseBody
