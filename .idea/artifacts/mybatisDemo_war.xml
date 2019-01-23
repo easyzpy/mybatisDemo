@@ -1,6 +1,12 @@
 <component name="ArtifactManager">
   <artifact type="war" name="mybatisDemo:war">
     <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>mybatisDemo</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
     <root id="archive" name="ChatRobot.war">
       <element id="artifact" artifact-name="mybatisDemo:war exploded" />
     </root>

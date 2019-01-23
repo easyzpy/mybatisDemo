@@ -13,7 +13,7 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class GoodItemTest {
 
-    @Autowired
+   /* @Autowired
     private GoodItemDao goodItemDao;
     @Test
     @Rollback(false)
@@ -34,6 +34,6 @@ public class GoodItemTest {
     public void test3(){
         Integer integer = goodItemDao.delGoodItem(11);
         System.out.println(integer);
-    }
+    }*/
 
 }
