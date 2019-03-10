@@ -23,7 +23,7 @@ public class CrossDomainFilter implements Filter {
 //// 提示OPTIONS预检时，后端需要设置的两个常用自定义头
 //        response.setHeader("Access-Control-Allow-Headers", "Content-Type,X-Requested-With");
 //        chain.doFilter(req, resp);
-        response.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:5500");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT");
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "x-requested-with, content-type, authorization");
