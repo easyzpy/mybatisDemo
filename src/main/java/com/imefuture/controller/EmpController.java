@@ -79,19 +79,18 @@ public class EmpController {
         try {
 
             // 设置弹出对话框
-            response.setContentType("application/octet-stream");
-//            response.setContentType("application/vnd.ms-excel");
             response.setCharacterEncoding("UTF-8");
+            response.setHeader("Content-type", "application/octet-stream");
+//            response.setContentType("application/vnd.ms-excel");
 
             // 设置工作表的标题
-            response.setHeader("Content-Disposition", "attachment; filename="+new String("你好我是中文名".getBytes(),"ISO8859-1")+".xls");// 设置生成的文件名字
+            response.setHeader("Content-Disposition", "attachment; filename="+new String("12345".getBytes(),"ISO8859-1")+".xls");// 设置生成的文件名字
             os = response.getOutputStream();
 
             // 初始化工作表
             book = Workbook.createWorkbook(os);
 
         } catch (IOException e1) {
-
             e1.printStackTrace();
         }
         try {

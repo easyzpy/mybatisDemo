@@ -5,6 +5,7 @@ import com.imefuture.service.GoodItemServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -17,7 +18,12 @@ public class GoodItemController {
     public List<GoodItem> list(){
 
 
-        return goodItemService.goodItemList();
+//        return goodItemService.goodItemList();
+        GoodItem goodItem = new GoodItem();
+        goodItem.setName("afdasdf");
+        ArrayList<GoodItem> list = new ArrayList<>();
+        list.add(goodItem);
+        return list;
     }
 
     @RequestMapping(value = "goodItem", method = RequestMethod.POST)
